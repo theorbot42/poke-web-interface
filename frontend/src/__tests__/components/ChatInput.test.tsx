@@ -31,7 +31,6 @@ describe('ChatInput', () => {
     render(<ChatInput onSend={onSend} />);
     const textarea = screen.getByRole('textbox');
     await userEvent.type(textarea, '  Hello Poke  ');
-    const sendButton = screen.getByRole('button', { name: '' }); // Send button
     // Find the send button that is not the paperclip
     const buttons = screen.getAllByRole('button');
     const sendBtn = buttons[buttons.length - 1]; // last button is send
