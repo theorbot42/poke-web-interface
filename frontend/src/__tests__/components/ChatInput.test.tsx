@@ -3,8 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ChatInput from '../../components/Chat/ChatInput';
 
-// Mock the chatStore
-vi.mock('../../stores/chatStore', () => ({
+// Mock the chatStore using the same alias path the component uses
+vi.mock('@/stores/chatStore', () => ({
   useChatStore: () => ({ isTyping: false }),
 }));
 
@@ -67,7 +67,7 @@ describe('ChatInput', () => {
   });
 
   it('shows Poke is typing placeholder when isTyping', () => {
-    vi.mock('../../stores/chatStore', () => ({
+    vi.mock('@/stores/chatStore', () => ({
       useChatStore: () => ({ isTyping: true }),
     }));
     // Rerender with typing state
