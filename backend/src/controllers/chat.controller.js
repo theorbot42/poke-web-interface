@@ -1,5 +1,4 @@
 const { query } = require('../config/database');
-const { get, set } = require('../config/redis');
 const pokeService = require('../services/poke.service');
 
 const getSessions = async (req, res, next) => {

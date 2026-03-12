@@ -12,7 +12,7 @@ jest.mock('bcryptjs', () => ({
 
 const { query } = require('../../config/database');
 const { set, get, del } = require('../../config/redis');
-const { generateToken, generateRefreshToken, verifyRefreshToken } = require('../../config/jwt');
+const { verifyRefreshToken } = require('../../config/jwt');
 const bcrypt = require('bcryptjs');
 const {
   register,
