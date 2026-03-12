@@ -54,7 +54,7 @@ describe('authStore', () => {
   });
 
   it('logout should clear auth state', async () => {
-    useAuthStore.setState({ user: { id: 'u1' } as any, token: 'tok', isAuthenticated: true });
+    useAuthStore.setState({ user: { id: 'u1' } as unknown as import('../../stores/authStore').User, token: 'tok', isAuthenticated: true });
     (authApi.logout as ReturnType<typeof vi.fn>).mockResolvedValue({});
 
     await act(async () => {
@@ -92,7 +92,7 @@ describe('authStore', () => {
 
   it('updateUser should merge user fields', () => {
     useAuthStore.setState({
-      user: { id: 'u1', username: 'old_name', email: 's@test.com', role: 'user' } as any,
+      user: { id: 'u1', username: 'old_name', email: 's@test.com', role: 'user' } as unknown as import('../../stores/authStore').User,
     });
     useAuthStore.getState().updateUser({ username: 'new_name' });
     expect(useAuthStore.getState().user?.username).toBe('new_name');

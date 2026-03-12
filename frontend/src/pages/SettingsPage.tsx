@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuthStore } from '@/stores/authStore';
 import { authApi } from '@/services/api';
-import { User, Lock, Bell, Info } from 'lucide-react';
+import { User, Lock, Info } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function SettingsPage() {
@@ -18,8 +18,9 @@ export default function SettingsPage() {
       const { data } = await authApi.updateMe({ username });
       updateUser(data.user);
       toast.success('Profil mis à jour');
-    } catch (error: any) {
-      toast.error(error?.response?.data?.error || 'Erreur');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { error?: string } } };
+      toast.error(err?.response?.data?.error || 'Erreur');
     } finally {
       setIsSavingProfile(false);
     }
@@ -36,8 +37,9 @@ export default function SettingsPage() {
       await authApi.changePassword(passwords.current, passwords.new);
       toast.success('Mot de passe modifié');
       setPasswords({ current: '', new: '', confirm: '' });
-    } catch (error: any) {
-      toast.error(error?.response?.data?.error || 'Erreur');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { error?: string } } };
+      toast.error(err?.response?.data?.error || 'Erreur');
     } finally {
       setIsSavingPassword(false);
     }
@@ -56,7 +58,7 @@ export default function SettingsPage() {
           </div>
           <form onSubmit={handleSaveProfile} className="space-y-4">
             <div>
-              <label className="block text-sm text-gray-400 mb-1.5">Nom d’utilisateur</label>
+              <label className="block text-sm text-gray-400 mb-1.5">Nom d'utilisateur</label>
               <input
                 type="text"
                 value={username}
@@ -73,7 +75,7 @@ export default function SettingsPage() {
                 disabled
                 className="input-field opacity-50 cursor-not-allowed"
               />
-              <p className="text-xs text-gray-500 mt-1">L’email ne peut pas être modifié</p>
+              <p className="text-xs text-gray-500 mt-1">L'email ne peut pas être modifié</p>
             </div>
             <button type="submit" disabled={isSavingProfile} className="btn-primary">
               {isSavingProfile ? 'Sauvegarde...' : 'Sauvegarder'}

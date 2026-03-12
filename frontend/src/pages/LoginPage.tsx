@@ -18,8 +18,9 @@ export default function LoginPage() {
     try {
       await login(email, password);
       toast.success('Connexion réussie !');
-    } catch (error: any) {
-      toast.error(error?.response?.data?.error || 'Erreur de connexion');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { error?: string } } };
+      toast.error(err?.response?.data?.error || 'Erreur de connexion');
     } finally {
       setIsLoading(false);
     }
@@ -91,7 +92,7 @@ export default function LoginPage() {
         <p className="text-center mt-4 text-gray-500 text-sm">
           Pas encore de compte ?{' '}
           <Link to="/register" className="text-poke-400 hover:text-poke-300 font-medium">
-            S’inscrire
+            S'inscrire
           </Link>
         </p>
       </div>

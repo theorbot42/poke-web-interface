@@ -20,7 +20,7 @@ const handlePokeEvent = async (req, res, next) => {
         break;
       }
       default:
-        console.log('Type d’événement non géré:', event.type);
+        console.log("Type d'événement non géré:", event.type);
     }
 
     res.json({ received: true, type: event.type });

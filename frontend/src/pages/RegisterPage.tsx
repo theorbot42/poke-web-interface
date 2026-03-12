@@ -23,12 +23,13 @@ export default function RegisterPage() {
     try {
       await register(form.username, form.email, form.password);
       toast.success('Compte créé avec succès !');
-    } catch (error: any) {
-      const details = error?.response?.data?.details;
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { details?: { message: string }[]; error?: string } } };
+      const details = err?.response?.data?.details;
       if (details) {
-        details.forEach((d: any) => toast.error(d.message));
+        details.forEach((d: { message: string }) => toast.error(d.message));
       } else {
-        toast.error(error?.response?.data?.error || 'Erreur lors de l’inscription');
+        toast.error(err?.response?.data?.error || "Erreur lors de l'inscription");
       }
     } finally {
       setIsLoading(false);
@@ -49,7 +50,7 @@ export default function RegisterPage() {
         <div className="card">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Nom d’utilisateur</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">Nom d'utilisateur</label>
               <input
                 type="text"
                 value={form.username}

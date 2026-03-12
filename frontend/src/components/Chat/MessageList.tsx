@@ -9,7 +9,7 @@ interface MessageListProps {
   sessionId: string;
 }
 
-export default function MessageList({ messages, sessionId }: MessageListProps) {
+export default function MessageList({ messages, _sessionId }: Omit<MessageListProps, 'sessionId'> & { _sessionId?: string }) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const { isTyping } = useChatStore();
 
