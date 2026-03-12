@@ -8,7 +8,7 @@ const register = async (req, res, next) => {
     const { username, email, password } = req.body;
     const existing = await query('SELECT id FROM users WHERE email = $1 OR username = $2', [email, username]);
     if (existing.rows.length > 0) {
-      return res.status(409).json({ error: 'Email ou nom d’utilisateur déjà utilisé' });
+      return res.status(409).json({ error: "Email ou nom d'utilisateur déjà utilisé" });
     }
     const hashedPassword = await bcrypt.hash(password, 12);
     const result = await query(

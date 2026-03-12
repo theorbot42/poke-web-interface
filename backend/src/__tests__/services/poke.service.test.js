@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-jest.mock('axios');
 jest.mock('../../config/redis', () => ({
   get: jest.fn(),
   set: jest.fn(),

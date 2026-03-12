@@ -23,7 +23,7 @@ export interface Message {
   session_id: string;
   role: 'user' | 'assistant';
   content: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   created_at: string;
 }
 
