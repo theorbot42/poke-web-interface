@@ -20,9 +20,9 @@ router.put('/sessions/:sessionId/title', [
 ], chatController.updateSessionTitle);
 
 router.get('/sessions/:sessionId/messages', chatController.getMessages);
-router.post('/sessions/:sessionId/messages', [
+router.post('/sessions/:sessionId/messages', validate([
   body('content').trim().isLength({ min: 1, max: 50000 }).withMessage('Message content required')
-], chatController.sendMessage);
+]), chatController.sendMessage);
 
 router.get('/history', chatController.getHistory);
 router.delete('/history', chatController.clearHistory);
