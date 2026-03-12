@@ -1,4 +1,4 @@
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, _next) => {
   console.error('Error:', {
     message: err.message,
     stack: process.env.NODE_ENV !== 'production' ? err.stack : undefined,

@@ -1,2 +1,2 @@
-const initializeSocket = (server) => {};
+const initializeSocket = (_server) => {};
 module.exports = { initializeSocket };

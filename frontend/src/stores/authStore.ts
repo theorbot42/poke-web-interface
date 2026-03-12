@@ -62,7 +62,8 @@ export const useAuthStore = create<AuthState>()(
       logout: async () => {
         try {
           await authApi.logout();
-        } catch {}
+        } catch { // intentionally empty — logout clears local state regardless of API errors
+        }
         set({ user: null, token: null, refreshToken: null, isAuthenticated: false });
       },
 

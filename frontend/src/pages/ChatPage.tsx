@@ -16,7 +16,7 @@ export default function ChatPage() {
   const createSession = useCreateSession();
   const deleteSession = useDeleteSession();
 
-  const { data: _sessions } = useMessages(sessionId ?? null);
+  useMessages(sessionId ?? null);
   const sessionMessages = sessionId ? (messages[sessionId] ?? []) : [];
   const sendMessage = useSendMessage(sessionId ?? null);
 

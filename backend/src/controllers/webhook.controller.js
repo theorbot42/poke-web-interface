@@ -1,4 +1,3 @@
-const { query } = require('../config/database');
 const { getIO } = require('../websocket/socketHandler');
 
 const handlePokeEvent = async (req, res, next) => {
