@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     initAuth();
-  }, []);
+  }, [initAuth]);
 
   if (isLoading) return <LoadingScreen />;
 

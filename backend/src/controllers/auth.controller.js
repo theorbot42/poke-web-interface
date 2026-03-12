@@ -41,7 +41,8 @@ const login = async (req, res, next) => {
     const token = generateToken({ userId: user.id, role: user.role });
     const refreshToken = generateRefreshToken({ userId: user.id });
     await set(`refresh:${user.id}`, refreshToken, 30 * 24 * 3600);
-    const { password_hash: _password_hash, ...safeUser } = user;
+    // eslint-disable-next-line no-unused-vars
+    const { password_hash, ...safeUser } = user;
     res.json({ user: safeUser, token, refreshToken });
   } catch (error) {
     next(error);

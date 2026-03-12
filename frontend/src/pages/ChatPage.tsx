@@ -25,7 +25,7 @@ export default function ChatPage() {
   useEffect(() => {
     if (sessionId) setActiveSession(sessionId);
     else setActiveSession(null);
-  }, [sessionId]);
+  }, [sessionId, setActiveSession]);
 
   const handleNewSession = async () => {
     const session = await createSession.mutateAsync();
